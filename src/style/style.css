@@ -1,0 +1,90 @@
+@import url("https://fonts.google.com/specimen/Rubik");
+* {
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border: 0;
+  font-size: 16px;
+}
+
+body {
+  background-color: hsl(228, 33%, 97%);
+}
+
+textarea .comment-input {
+  width: 400px;
+  height: 100px;
+}
+
+footer .attribution {
+  font-size: 11px;
+  text-align: center;
+}
+footer .attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
+.cardCont {
+  display: flex;
+  height: 150px;
+  background-color: hsl(0, 0%, 100%);
+  justify-content: space-between;
+  padding: 20px;
+  border-radius: 5px;
+}
+.cardCont .counter {
+  background-color: hsl(223, 19%, 93%);
+  color: hsl(212, 24%, 26%);
+  width: 50px;
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+}
+.cardCont .counter button {
+  padding: 10px 0;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.cardCont .counter .score {
+  text-align: center;
+}
+.cardCont .commentBody {
+  margin-left: 20px;
+}
+.cardCont .commentBody .head {
+  display: flex;
+  justify-content: space-between;
+}
+.cardCont .commentBody .head .left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cardCont .commentBody .head .left .avatar img {
+  width: 40px;
+  height: 40px;
+}
+.cardCont .commentBody .head .left .name {
+  margin: 0 20px;
+  font-weight: 700;
+}
+.cardCont .commentBody .head .left .time {
+  color: hsl(239, 57%, 85%);
+}
+.cardCont .commentBody .commentText {
+  padding-top: 20px;
+}
+
+#main {
+  width: 80%;
+  margin: 30px auto;
+}
+
+#reply {
+  width: 70%;
+  margin: 30px 10% 30px auto;
+}/*# sourceMappingURL=style.css.map */
