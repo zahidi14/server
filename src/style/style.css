@@ -26,12 +26,13 @@ footer .attribution a {
   color: hsl(228, 45%, 44%);
 }
 
+.comment-container {
+  display: block;
+}
+
 .cardCont {
-  display: flex;
-  height: 150px;
   background-color: hsl(0, 0%, 100%);
   justify-content: space-between;
-  padding: 20px;
   border-radius: 5px;
 }
 .cardCont .counter {
@@ -79,12 +80,99 @@ footer .attribution a {
   padding-top: 20px;
 }
 
+@media only screen and (min-width: 768px) {
+  .cardCont {
+    display: flex;
+    height: 150px;
+    padding: 20px;
+  }
+  .cardCont .counter {
+    background-color: hsl(223, 19%, 93%);
+    color: hsl(212, 24%, 26%);
+    width: 50px;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+  }
+  .cardCont .counter button {
+    padding: 10px 0;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+  .cardCont .counter .score {
+    text-align: center;
+  }
+  .cardCont .commentBody {
+    margin-left: 20px;
+  }
+  .cardCont .commentBody .head {
+    display: flex;
+    justify-content: space-between;
+  }
+  .cardCont .commentBody .head .left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .cardCont .commentBody .head .left .avatar img {
+    width: 40px;
+    height: 40px;
+  }
+  .cardCont .commentBody .head .left .name {
+    margin: 0 20px;
+    font-weight: 700;
+  }
+  .cardCont .commentBody .head .left .time {
+    color: hsl(239, 57%, 85%);
+  }
+  .cardCont .commentBody .commentText {
+    padding-top: 20px;
+  }
+}
 #main {
   width: 80%;
   margin: 30px auto;
 }
 
 #reply {
-  width: 70%;
+  width: 75%;
   margin: 30px 10% 30px auto;
+}
+
+.rep {
+  position: fixed;
+  top: 50%;
+  z-index: 9999;
+  font-size: larger;
+}
+
+.inputContainer {
+  width: 80%;
+  margin: 30px auto;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  align-items: center;
+}
+.inputContainer .image {
+  width: 40px;
+  height: 40px;
+  margin-top: 0;
+}
+.inputContainer .text {
+  width: 70%;
+  height: 100px;
+  border: 1px solid hsl(212, 24%, 26%);
+  padding: 15px;
+  border-radius: 8px;
+}
+.inputContainer .butt {
+  width: 100px;
+  height: 50px;
+  border-radius: 8px;
+  color: hsl(228, 33%, 97%);
+  background-color: hsl(238, 40%, 52%);
 }/*# sourceMappingURL=style.css.map */

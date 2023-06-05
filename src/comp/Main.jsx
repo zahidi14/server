@@ -1,197 +1,134 @@
 import { useEffect, useState } from "react";
-import { jsonn } from "./get";
-import axios from "axios";
+import { ReactComponent as Plus } from "../images/icon-plus.svg";
+import { ReactComponent as Minus } from "../images/icon-minus.svg";
+import { ReactComponent as Reply } from "../images/icon-reply.svg";
+import { fetc } from "./get";
+import Replies from "./Replies";
 
 const Main = () => {
-  const [data, setData] = useState();
-  const url = "http://localhost:5500/api/data";
+  const [cont, setCont] = useState();
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    axios
-      .get(url)
+    fetc()
       .then((res) => {
-        setData(res);
+        setCont(res[0]);
+        setLoading(false);
       })
-      .catch(console.log("error goblog"));
+      .catch((error) => {
+        console.log("Error Goblog", error);
+      });
   }, []);
 
-  console.log({ cek: data });
+  const handleIncrementScore = (commentId) => {
+    setCont((prevCont) => {
+      const updatedComments = prevCont.comments.map((comment) => {
+        if (comment._id === commentId) {
+          return {
+            ...comment,
+            score: comment.score + 1,
+          };
+        }
+        return comment;
+      });
+      return {
+        ...prevCont,
+        comments: updatedComments,
+      };
+    });
+  };
+
+  const handleDecrementScore = (commentId) => {
+    setCont((prevCont) => {
+      const updatedComments = prevCont.comments.map((comment) => {
+        if (comment._id === commentId) {
+          return {
+            ...comment,
+            score: comment.score - 1,
+          };
+        }
+        return comment;
+      });
+      return {
+        ...prevCont,
+        comments: updatedComments,
+      };
+    });
+  };
+
+  if (loading) {
+    return <div>Loading data...</div>;
+  }
+
+  console.log({ cek: cont.currentUser.username });
+
   return (
     <main role="main">
-      <div className="cardCont" id="main">
-        <div className="counter">
-          <button className="plus" alt="plus">
-            <svg width="11" height="11" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M6.33 10.896c.137 0 .255-.05.354-.149.1-.1.149-.217.149-.354V7.004h3.315c.136 0 .254-.05.354-.149.099-.1.148-.217.148-.354V5.272a.483.483 0 0 0-.148-.354.483.483 0 0 0-.354-.149H6.833V1.4a.483.483 0 0 0-.149-.354.483.483 0 0 0-.354-.149H4.915a.483.483 0 0 0-.354.149c-.1.1-.149.217-.149.354v3.37H1.08a.483.483 0 0 0-.354.15c-.1.099-.149.217-.149.353v1.23c0 .136.05.254.149.353.1.1.217.149.354.149h3.333v3.39c0 .136.05.254.15.353.098.1.216.149.353.149H6.33Z"
-                fill="#C5C6EF"
-              />
-            </svg>
-          </button>
-          <div className="score"></div>
-          <button className="minus" alt="minus">
-            <svg width="11" height="3" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M9.256 2.66c.204 0 .38-.056.53-.167.148-.11.222-.243.222-.396V.722c0-.152-.074-.284-.223-.395a.859.859 0 0 0-.53-.167H.76a.859.859 0 0 0-.53.167C.083.437.009.57.009.722v1.375c0 .153.074.285.223.396a.859.859 0 0 0 .53.167h8.495Z"
-                fill="#C5C6EF"
-              />
-            </svg>
-          </button>
-        </div>
-        <div className="commentBody">
-          <div className="head">
-            <div className="left">
-              <div className="avatar">
-                <img className="pic" src="" alt="" />
-              </div>
-              <div className="name">aa</div>
-              <div className="time">aa</div>
-            </div>
-            <div className="righ">
-              <button className="reply">
-                <img src="/images/icon-reply.svg" alt="" srcSet="" /> Reply
+      {cont.comments.map((co) => (
+        <div className="comment-container" key={co._id}>
+          <div className="cardCont" id="main">
+            <div className="counter">
+              <button
+                className="plus"
+                alt="plus"
+                onClick={() => handleIncrementScore(co._id)}
+              >
+                <Plus />
+              </button>
+              <div className="score">{co.score}</div>
+              <button
+                className="minus"
+                alt="minus"
+                onClick={() => handleDecrementScore(co._id)}
+              >
+                <Minus />
               </button>
             </div>
-          </div>
-          <div className="commentText">
-            <p>tes</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="cardCont" id="main">
-        <div className="counter">
-          <button className="plus" alt="plus">
-            <svg width="11" height="11" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M6.33 10.896c.137 0 .255-.05.354-.149.1-.1.149-.217.149-.354V7.004h3.315c.136 0 .254-.05.354-.149.099-.1.148-.217.148-.354V5.272a.483.483 0 0 0-.148-.354.483.483 0 0 0-.354-.149H6.833V1.4a.483.483 0 0 0-.149-.354.483.483 0 0 0-.354-.149H4.915a.483.483 0 0 0-.354.149c-.1.1-.149.217-.149.354v3.37H1.08a.483.483 0 0 0-.354.15c-.1.099-.149.217-.149.353v1.23c0 .136.05.254.149.353.1.1.217.149.354.149h3.333v3.39c0 .136.05.254.15.353.098.1.216.149.353.149H6.33Z"
-                fill="#C5C6EF"
-              />
-            </svg>
-          </button>
-          <div className="score"></div>
-          <button className="minus" alt="minus">
-            <svg width="11" height="3" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M9.256 2.66c.204 0 .38-.056.53-.167.148-.11.222-.243.222-.396V.722c0-.152-.074-.284-.223-.395a.859.859 0 0 0-.53-.167H.76a.859.859 0 0 0-.53.167C.083.437.009.57.009.722v1.375c0 .153.074.285.223.396a.859.859 0 0 0 .53.167h8.495Z"
-                fill="#C5C6EF"
-              />
-            </svg>
-          </button>
-        </div>
-        <div className="commentBody">
-          <div className="head">
-            <div className="left">
-              <div className="avatar">
-                <img className="pic" src="" alt="" />
+            <div className="commentBody">
+              <div className="head">
+                <div className="left">
+                  <div className="avatar">
+                    <img className="pic" src={co.user.image.webp} alt="" />
+                  </div>
+                  <div className="name">{co.user.username}</div>
+                  <div className="time">{co.createdAt}</div>
+                </div>
+                <div className="right">
+                  <button className="reply">
+                    <Reply />
+                  </button>
+                </div>
               </div>
-              <div className="name">aa</div>
-              <div className="time">aa</div>
-            </div>
-            <div className="righ">
-              <button className="reply">
-                <img src="/images/icon-reply.svg" alt="" srcSet="" /> Reply
-              </button>
-            </div>
-          </div>
-          <div className="commentText">
-            <p>tes</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="cardCont" id="reply">
-        <div className="counter">
-          <button className="plus" alt="plus">
-            <svg width="11" height="11" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M6.33 10.896c.137 0 .255-.05.354-.149.1-.1.149-.217.149-.354V7.004h3.315c.136 0 .254-.05.354-.149.099-.1.148-.217.148-.354V5.272a.483.483 0 0 0-.148-.354.483.483 0 0 0-.354-.149H6.833V1.4a.483.483 0 0 0-.149-.354.483.483 0 0 0-.354-.149H4.915a.483.483 0 0 0-.354.149c-.1.1-.149.217-.149.354v3.37H1.08a.483.483 0 0 0-.354.15c-.1.099-.149.217-.149.353v1.23c0 .136.05.254.149.353.1.1.217.149.354.149h3.333v3.39c0 .136.05.254.15.353.098.1.216.149.353.149H6.33Z"
-                fill="#C5C6EF"
-              />
-            </svg>
-          </button>
-          <div className="score"></div>
-          <button className="minus" alt="minus">
-            <svg width="11" height="3" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M9.256 2.66c.204 0 .38-.056.53-.167.148-.11.222-.243.222-.396V.722c0-.152-.074-.284-.223-.395a.859.859 0 0 0-.53-.167H.76a.859.859 0 0 0-.53.167C.083.437.009.57.009.722v1.375c0 .153.074.285.223.396a.859.859 0 0 0 .53.167h8.495Z"
-                fill="#C5C6EF"
-              />
-            </svg>
-          </button>
-        </div>
-        <div className="commentBody">
-          <div className="head">
-            <div className="left">
-              <div className="avatar">
-                <img className="pic" src="" alt="" />
+              <div className="commentText">
+                <p>{co.content}</p>
               </div>
-              <div className="name">aa</div>
-              <div className="time">aa</div>
-            </div>
-            <div className="righ">
-              <button className="reply">
-                <img src="/images/icon-reply.svg" alt="" srcSet="" /> Reply
-              </button>
             </div>
           </div>
-          <div className="commentText">
-            <p>tes</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="cardCont" id="reply">
-        <div className="counter">
-          <button className="plus" alt="plus">
-            <svg width="11" height="11" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M6.33 10.896c.137 0 .255-.05.354-.149.1-.1.149-.217.149-.354V7.004h3.315c.136 0 .254-.05.354-.149.099-.1.148-.217.148-.354V5.272a.483.483 0 0 0-.148-.354.483.483 0 0 0-.354-.149H6.833V1.4a.483.483 0 0 0-.149-.354.483.483 0 0 0-.354-.149H4.915a.483.483 0 0 0-.354.149c-.1.1-.149.217-.149.354v3.37H1.08a.483.483 0 0 0-.354.15c-.1.099-.149.217-.149.353v1.23c0 .136.05.254.149.353.1.1.217.149.354.149h3.333v3.39c0 .136.05.254.15.353.098.1.216.149.353.149H6.33Z"
-                fill="#C5C6EF"
+          {co.replies.length !== 0 &&
+            co.replies.map((cok) => (
+              <Replies
+                cok={cok}
+                key={cok._id}
+                handleIncrementScore={handleIncrementScore}
+                handleDecrementScore={handleDecrementScore}
               />
-            </svg>
-          </button>
-          <div className="score"></div>
-          <button className="minus" alt="minus">
-            <svg width="11" height="3" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M9.256 2.66c.204 0 .38-.056.53-.167.148-.11.222-.243.222-.396V.722c0-.152-.074-.284-.223-.395a.859.859 0 0 0-.53-.167H.76a.859.859 0 0 0-.53.167C.083.437.009.57.009.722v1.375c0 .153.074.285.223.396a.859.859 0 0 0 .53.167h8.495Z"
-                fill="#C5C6EF"
-              />
-            </svg>
-          </button>
+            ))}
         </div>
-        <div className="commentBody">
-          <div className="head">
-            <div className="left">
-              <div className="avatar">
-                <img className="pic" src="" alt="" />
-              </div>
-              <div className="name">aa</div>
-              <div className="time">aa</div>
-            </div>
-            <div className="righ">
-              <button className="reply">
-                <img src="/images/icon-reply.svg" alt="" srcSet="" /> Reply
-              </button>
-            </div>
-          </div>
-          <div className="commentText">
-            <p>tes</p>
-          </div>
+      ))}
+      ;
+      <div className="inputContainer">
+        <div className="image">
+          <img src={cont.currentUser.image.webp} />
         </div>
-      </div>
-
-      <div className="commentForm">
-        <div className="avatar"></div>
         <textarea
-          className="comment-input"
+          className="text"
           name="text"
           id=""
           cols="30"
           rows="10"
           placeholder="Add a Commment..."
         ></textarea>
-        <button>SEND</button>
+        <button className="butt">SEND</button>
       </div>
     </main>
   );

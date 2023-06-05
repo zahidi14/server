@@ -1,71 +1,121 @@
-.container{
-     
-   
+.comment-container {
+  display: block;
 }
-.cardCont{
+.cardCont {
+  background-color: $White;
+  justify-content: space-between;
+
+  border-radius: 5px;
+
+  .counter {
+    background-color: $Lightgray;
+    color: $Darkblue;
+    width: 50px;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+    button {
+      padding: 10px 0;
+      cursor: pointer;
+      border-radius: 10px;
+    }
+    .score {
+      text-align: center;
+    }
+  }
+  .commentBody {
+    margin-left: 20px;
+    .head {
+      display: flex;
+      justify-content: space-between;
+      .left {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .avatar {
+          img {
+            width: 40px;
+            height: 40px;
+          }
+        }
+        .name {
+          margin: 0 20px;
+          font-weight: 700;
+        }
+        .time {
+          color: $Lightgrayishblue;
+        }
+      }
+    }
+    .commentText {
+      padding-top: 20px;
+    }
+  }
+}
+@media only screen and (min-width: 768px) {
+  .cardCont {
     display: flex;
     height: 150px;
-    
-    background-color: $White;
-    justify-content: space-between;
+
     padding: 20px;
-    
-    border-radius: 5px;
- 
-    .counter{
-        background-color: $Lightgray;
-        color: $Darkblue;
-        width: 50px;
-        height: 90px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+
+    .counter {
+      background-color: $Lightgray;
+      color: $Darkblue;
+      width: 50px;
+      height: 90px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-radius: 10px;
+      button {
+        padding: 10px 0;
+        cursor: pointer;
         border-radius: 10px;
-        button{
-            padding: 10px 0;
-            cursor: pointer;
-            border-radius: 10px;
-        }
-        .score{
-            text-align: center;
-        }
+      }
+      .score {
+        text-align: center;
+      }
     }
-    .commentBody{
-        margin-left: 20px;
-        .head{
-            display: flex;
-            justify-content: space-between;
-            .left{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                .avatar{
-                    img{
-                        width: 40px;
-                        height: 40px;
-                    }
-                }
-                .name{
-                    margin:0 20px;
-                    font-weight: 700;
-                }
-                .time{
-                    color: $Lightgrayishblue;
-                }
-               
+    .commentBody {
+      margin-left: 20px;
+      .head {
+        display: flex;
+        justify-content: space-between;
+        .left {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .avatar {
+            img {
+              width: 40px;
+              height: 40px;
             }
-            
+          }
+          .name {
+            margin: 0 20px;
+            font-weight: 700;
+          }
+          .time {
+            color: $Lightgrayishblue;
+          }
         }
-        .commentText{
-            padding-top: 20px;
-        }
+      }
+      .commentText {
+        padding-top: 20px;
+      }
     }
+  }
 }
-#main{
-    width: 80%;
-    margin: 30px auto;
+@media only screen and (max-width: 767px) {
 }
-#reply{
-    width: 70%;
-    margin: 30px 10% 30px auto;
+#main {
+  width: 80%;
+  margin: 30px auto;
+}
+#reply {
+  width: 75%;
+  margin: 30px 10% 30px auto;
 }

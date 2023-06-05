@@ -10,7 +10,7 @@ const Footer = () => {
         >
           Frontend Mentor
         </a>
-        . Coded by <a href="#">Zahidi</a>.
+        . Coded by <a href="http://dzahidi.web.id">Zahidi</a>.
       </div>
     </footer>
   );

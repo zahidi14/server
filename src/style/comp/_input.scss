@@ -1,0 +1,28 @@
+.inputContainer {
+  width: 80%;
+  margin: 30px auto;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  align-items: center;
+  .image {
+    width: 40px;
+    height: 40px;
+    margin-top: 0;
+  }
+  .text {
+    width: 70%;
+    height: 100px;
+    border: 1px solid $Darkblue;
+    padding: 15px;
+    border-radius: 8px;
+  }
+  .butt {
+    width: 100px;
+    height: 50px;
+    border-radius: 8px;
+    color: $Verylightgray;
+    background-color: $Moderateblue;
+  }
+}

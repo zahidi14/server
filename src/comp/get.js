@@ -1,8 +1,10 @@
 import axios from "axios";
 
-export const jsonn = async () => {
+export const fetc = async () => {
   try {
-    const response = await axios.get("http://localhost:5500/api/data/");
+    const response = await axios.get(
+      "https://comment-backend-ntb78k2xb-zahidi14.vercel.app/comments/"
+    );
     return response.data;
   } catch (error) {
     console.log("goblogggg", error);
