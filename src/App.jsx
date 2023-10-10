@@ -1,5 +1,5 @@
-import Footer from "./comp/Footer";
-import Main from "./comp/Main";
+import { Footer } from "./comp";
+import Main from "./pages/Main";
 import "./style/style.css";
 
 function App() {

@@ -1,3 +1,5 @@
+@import "../../style/style.scss";
+
 .inputContainer {
   width: 80%;
   margin: 30px auto;
@@ -17,12 +19,5 @@
     border: 1px solid $Darkblue;
     padding: 15px;
     border-radius: 8px;
-  }
-  .butt {
-    width: 100px;
-    height: 50px;
-    border-radius: 8px;
-    color: $Verylightgray;
-    background-color: $Moderateblue;
   }
 }

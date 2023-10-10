@@ -1,0 +1,12 @@
+@import "../../style/style.scss";
+
+.butt {
+  width: 100px;
+  height: 50px;
+  border-radius: 8px;
+  color: $Verylightgray;
+  background-color: $Moderateblue;
+  &:hover {
+    cursor: pointer;
+  }
+}
