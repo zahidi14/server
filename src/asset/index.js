@@ -1,7 +1,7 @@
-import { ReactComponent as DeleteIcon } from "./images/icon-delete.svg";
-import { ReactComponent as EditIcon } from "./images/icon-edit.svg";
-import { ReactComponent as MinusIcon } from "./images/icon-minus.svg";
-import { ReactComponent as PlusIcon } from "./images/icon-plus.svg";
-import { ReactComponent as ReplyIcon } from "./images/icon-reply.svg";
+import { Delete } from "./images/icon-delete.svg?react";
+import { Edit } from "./images/icon-edit.svg?react";
+import { Minus } from "./images/icon-minus.svg?react";
+import { Plus } from "./images/icon-plus.svg?react";
+import { Reply } from "./images/icon-reply.svg?react";
 
-export { DeleteIcon, EditIcon, MinusIcon, PlusIcon, ReplyIcon };
+export { Delete, Edit, Minus, Plus, Reply };

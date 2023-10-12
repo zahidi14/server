@@ -8,13 +8,19 @@ const Main = () => {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
   const [comment, setComment] = useState("");
-
-  const date = new Date();
+  const [replyText, setReplyText] = useState("");
+  const [ReplyTo, setReplyTo] = useState(null);
+  const [showReplyInput, setReplyShow] = useState(false);
 
   useEffect(() => {
     getData();
     getUser();
   }, []);
+
+  const replyButton = (co) => {
+    setReplyTo(co);
+    setReplyShow(true);
+  };
 
   console.log("dasssta fetch", cont.data);
   const getData = async () => {
@@ -98,18 +104,24 @@ const Main = () => {
           </div>
         </div>
       ))}
-      ;
+
       {user &&
         user.map((cok) => (
-          <Input
-            cok={cok}
-            key={cok.id}
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            type="text"
-          />
+          <div className="inputContainer">
+            <div className="image">
+              <img src={cok.image.webp} />
+            </div>
+            <Input
+              cok={cok}
+              key={cok.id}
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              type="text"
+            />
+            <Button name="SEND" onClick={addComment} />
+          </div>
         ))}
-      <Button name="SEND" onClick={addComment} />
+
       {/* <pre>{JSON.stringify(cont, null, 2)}</pre> */}
     </main>
   );

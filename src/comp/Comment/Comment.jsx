@@ -1,61 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import "./comment.scss";
-// import { Plus, Minus, Reply } from "../../asset";
+import Plus from "../../asset/images/icon-plus.svg?react";
+import Minus from "../../asset/images/icon-minus.svg?react";
+import Reply from "../../asset/images/icon-reply.svg?react";
 
-const Comment = ({ co, setCount, inputRep }) => {
-  const handleIncrementScore = (commentId) => {
-    setCount((prevCont) => {
-      const updatedComments = prevCont.comments.map((comment) => {
-        if (comment._id === commentId) {
-          return {
-            ...comment,
-            score: comment.score + 1,
-          };
-        }
-        return comment;
-      });
-      return {
-        ...prevCont,
-        comments: updatedComments,
-      };
-    });
+const Comment = ({ co }) => {
+  const [count, setCount] = useState(co.score);
+
+  const plus = () => {
+    setCount(count + 1);
+  };
+  const minus = () => {
+    setCount(count - 1);
   };
 
-  const handleDecrementScore = (commentId) => {
-    setCont((prevCont) => {
-      const updatedComments = prevCont.comments.map((comment) => {
-        if (comment._id === commentId) {
-          return {
-            ...comment,
-            score: comment.score - 1,
-          };
-        }
-        return comment;
-      });
-      return {
-        ...prevCont,
-        comments: updatedComments,
-      };
-    });
-  };
   return (
     <>
       <div className="cardCont" id="main">
         <div className="counter">
-          <button
-            className="plus"
-            alt="plus"
-            onClick={() => handleIncrementScore(co.id)}
-          >
-            {/* <Plus /> */}
+          <button className="plus" alt="plus" onClick={plus}>
+            <Plus />
           </button>
-          <div className="score">{co.score}</div>
-          <button
-            className="minus"
-            alt="minus"
-            onClick={() => handleDecrementScore(co.id)}
-          >
-            {/* <Minus /> */}
+          <div className="score">{co.score && count}</div>
+          <button className="minus" alt="minus" onClick={minus}>
+            <Minus />
           </button>
         </div>
         <div className="commentBody">
@@ -67,8 +35,10 @@ const Comment = ({ co, setCount, inputRep }) => {
               <div className="name">{co.user.username}</div>
               <div className="time">{co.createdAt}</div>
             </div>
-            <div className="right">
-              <button className="reply">{/* <Reply /> */}</button>
+            <div className="righ">
+              <button className="reply">
+                <Reply /> Reply
+              </button>
             </div>
           </div>
           <div className="commentText">

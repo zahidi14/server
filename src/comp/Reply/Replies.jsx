@@ -1,53 +1,64 @@
-import React from "react";
+import { React, useState } from "react";
 import "./reply.scss";
-import { PlusIcon } from "../../asset/";
+import Plus from "../../asset/images/icon-plus.svg?react";
+import Minus from "../../asset/images/icon-minus.svg?react";
+import Reply from "../../asset/images/icon-reply.svg?react";
 
-const Replies = ({ cok, setCont }) => {
-  const handleIncrementScore = (commentId) => {
-    setCont((prevCont) => {
-      const updatedComments = prevCont.comments.map((comment) => {
-        if (comment._id === commentId) {
-          return {
-            ...comment,
-            score: comment.score + 1,
-          };
-        }
-        return comment;
-      });
-      return {
-        ...prevCont,
-        comments: updatedComments,
-      };
-    });
+const Replies = ({ cok }) => {
+  const [count, setCount] = useState(cok.score);
+
+  // const handleIncrementScore = (commentId) => {
+  //   setCont((prevCont) => {
+  //     const updatedComments = prevCont.comments.map((comment) => {
+  //       if (comment._id === commentId) {
+  //         return {
+  //           ...comment,
+  //           score: comment.score + 1,
+  //         };
+  //       }
+  //       return comment;
+  //     });
+  //     return {
+  //       ...prevCont,
+  //       comments: updatedComments,
+  //     };
+  //   });
+  // };
+
+  // const handleDecrementScore = (commentId) => {
+  //   setCont((prevCont) => {
+  //     const updatedComments = prevCont.comments.map((comment) => {
+  //       if (comment._id === commentId) {
+  //         return {
+  //           ...comment,
+  //           score: comment.score - 1,
+  //         };
+  //       }
+  //       return comment;
+  //     });
+  //     return {
+  //       ...prevCont,
+  //       comments: updatedComments,
+  //     };
+  //   });
+  // };
+
+  const plus = () => {
+    setCount(count + 1);
   };
-
-  const handleDecrementScore = (commentId) => {
-    setCont((prevCont) => {
-      const updatedComments = prevCont.comments.map((comment) => {
-        if (comment._id === commentId) {
-          return {
-            ...comment,
-            score: comment.score - 1,
-          };
-        }
-        return comment;
-      });
-      return {
-        ...prevCont,
-        comments: updatedComments,
-      };
-    });
+  const minus = () => {
+    setCount(count - 1);
   };
 
   return (
-    <div className="cardCont" id="reply" key={cok._id}>
+    <div className="cardCont" id="reply">
       <div className="counter">
-        <button className="plus" alt="plus" onClick={handleIncrementScore}>
-          <PlusIcon />
+        <button className="plus" alt="plus" onClick={plus}>
+          <Plus />
         </button>
-        <div className="score">{cok.score}</div>
-        <button className="minus" alt="minus" onClick={handleDecrementScore}>
-          {/* <Minus /> */}
+        <div className="score">{cok.score && count}</div>
+        <button className="minus" alt="minus" onClick={minus}>
+          <Minus />
         </button>
       </div>
       <div className="commentBody">
@@ -60,7 +71,10 @@ const Replies = ({ cok, setCont }) => {
             <div className="time">{cok.createdAt}</div>
           </div>
           <div className="righ">
-            <button className="reply">{/* <Reply /> */}</button>
+            <button className="reply">
+              <Reply />
+              Reply
+            </button>
           </div>
         </div>
         <div className="commentText">
