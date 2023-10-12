@@ -25,7 +25,7 @@ const Main = () => {
   console.log("dasssta fetch", cont.data);
   const getData = async () => {
     await axios
-      .get("http://localhost:8000/tes/comments")
+      .get("https://comment-backend-eight.vercel.app/tes/comments")
       .then((res) => {
         setCont(res.data);
         setLoading(false);
@@ -37,7 +37,7 @@ const Main = () => {
 
   const getUser = async () => {
     await axios
-      .get("http://localhost:8000/user")
+      .get("https://comment-backend-eight.vercel.app/user")
       .then((res) => {
         setUser(res.data.data);
       })
@@ -73,7 +73,7 @@ const Main = () => {
 
     console.log("upa", cont);
     await axios
-      .post("http://localhost:8000/tes/comment", newComment)
+      .post("https://comment-backend-eight.vercel.app/tes/comment", newComment)
       .then(() => {
         console.log("comment added successfully");
 
