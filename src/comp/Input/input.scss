@@ -4,10 +4,10 @@
   width: 80%;
   margin: 30px auto;
   background-color: #fff;
-  display: flex;
-  justify-content: space-between;
-  padding: 30px;
-  align-items: center;
+  &.replyInput {
+    width: 75%;
+    margin: 30px 10% 30px auto;
+  }
   .image {
     margin-top: 0;
   }
@@ -17,5 +17,38 @@
     border: 1px solid $Darkblue;
     padding: 15px;
     border-radius: 8px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  #mobile {
+    display: none;
+  }
+  .inputContainer {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    align-items: center;
+    * {
+      margin: 0 5px;
+    }
+  }
+}
+@media only screen and (max-width: 767px) {
+  #desktop {
+    display: none;
+  }
+  .inputContainer {
+    display: block;
+    padding: 20px;
+    .bot {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      img {
+        width: 40px;
+        height: 40px;
+      }
+    }
   }
 }

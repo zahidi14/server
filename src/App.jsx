@@ -1,6 +1,6 @@
 import { Footer } from "./comp";
 import Main from "./pages/Main";
-import "./style/style.css";
+import "./style/style.scss";
 
 function App() {
   return (

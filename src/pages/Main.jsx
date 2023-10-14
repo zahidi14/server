@@ -62,7 +62,7 @@ const Main = () => {
           png: "./images/avatars/image-juliosomo.png",
           webp: "./images/avatars/image-juliosomo.webp",
         },
-        username: "juliosomo",
+        username: "juliusomo",
       },
       replies: [],
     };
@@ -83,7 +83,7 @@ const Main = () => {
         console.error("Error adding comment: ", err);
       });
 
-    console.log({ comment: updatedComment });
+    console.log({ comment: newComment });
   };
   if (loading) {
     return <div>Loading data...</div>;
@@ -99,7 +99,9 @@ const Main = () => {
             <Comment co={co} setCont={setCont} />
             {co.replies.length !== 0 &&
               co.replies.map((cok) => (
-                <Replies cok={cok} key={cok.id} setCont={setCont} />
+                <div className="repCont" key={cok.id}>
+                  <Replies cok={cok} setCont={setCont} />
+                </div>
               ))}
           </div>
         </div>
@@ -107,19 +109,36 @@ const Main = () => {
 
       {user &&
         user.map((cok) => (
-          <div className="inputContainer">
-            <div className="image">
-              <img src={cok.image.webp} />
+          <>
+            <div className="inputContainer" id="desktop">
+              <div className="image">
+                <img src={cok.image.webp} />
+              </div>
+              <Input
+                cok={cok}
+                key={cok.id}
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                type="text"
+              />
+              <Button name="SEND" onClick={addComment} />
             </div>
-            <Input
-              cok={cok}
-              key={cok.id}
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-              type="text"
-            />
-            <Button name="SEND" onClick={addComment} />
-          </div>
+            <div className="inputContainer" id="mobile">
+              <Input
+                cok={cok}
+                key={cok.id}
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                type="text"
+              />
+              <div className="bot">
+                <div className="image">
+                  <img src={cok.image.webp} />
+                </div>
+                <Button name="SEND" onClick={addComment} />
+              </div>
+            </div>
+          </>
         ))}
 
       {/* <pre>{JSON.stringify(cont, null, 2)}</pre> */}
